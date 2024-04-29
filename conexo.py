@@ -12,7 +12,7 @@ def ventana_conexo():
     ventana.title("Grafo Conexo")
     tk.Label(
         ventana,
-        text="Un grafo conexo es un grafo que de cada vertice se puede sacar un camino fundamental",
+        text="Un grafo conexo es un grafo en el que hay un camino entre cada par de vértices",
     ).pack()
     ventana.after(60000, ventana.destroy)  # Cerrar la ventana después de 1 minuto
     ventana.mainloop()
@@ -30,6 +30,28 @@ def es_conexo(G):
 
     print("El grafo es conexo.")
     return True
+
+
+def verificar_camino(G):
+    nodo_origen = int(input("Ingrese el nodo de origen: "))
+    nodo_destino = int(input("Ingrese el nodo de destino: "))
+
+    if nodo_origen not in G.nodes() or nodo_destino not in G.nodes():
+        print("Al menos uno de los nodos no está presente en el grafo.")
+        return
+
+    if nx.has_path(G, source=nodo_origen, target=nodo_destino):
+        print(
+            "Hay un camino entre el nodo {} y el nodo {}.".format(
+                nodo_origen, nodo_destino
+            )
+        )
+    else:
+        print(
+            "No hay un camino entre el nodo {} y el nodo {}.".format(
+                nodo_origen, nodo_destino
+            )
+        )
 
 
 def dibujar_grafo():
@@ -58,6 +80,9 @@ def dibujar_grafo():
 
     # Verificar si el grafo es conexo
     es_conexo(G)
+
+    # Verificar si existe algún camino entre nodos específicos
+    verificar_camino(G)
 
     # Dibujar el grafo
     pos = nx.spring_layout(G)
