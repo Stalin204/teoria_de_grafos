@@ -1,10 +1,16 @@
 import tkinter as tk
 
 from conexidad import crear_ventana
+from introduction_g import introduction_grafos
 
 
 def conexidad(ventana):
     crear_ventana()
+    ventana.destroy()
+
+
+def introduction(ventana):
+    introduction_grafos()
     ventana.destroy()
 
 
@@ -20,7 +26,12 @@ def ventana_crear():
     )
     button.pack()
     button.place(x=200, y=200)
-
+    # aqui viene el boton para abribr la ventan de introducción
+    button_introdcution = tk.Button(
+        ventana, text="Introducción", command=lambda: introduction(ventana), fg="red"
+    )
+    button_introdcution.pack()
+    button_introdcution.place(x=200, y=300)
     ventana.mainloop()
 
 
