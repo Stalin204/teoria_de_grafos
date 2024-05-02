@@ -1,32 +1,38 @@
 import matplotlib.pyplot as plt
 import networkx as nx
 
+
 def esHamiltoniano(G):
-    #Verificamos si es dirigido o no
+    # Verificamos si es dirigido o no
     if nx.is_directed(G):
-        #verificamos si el grafo tiene conexidad debil
+        # verificamos si el grafo tiene conexidad debil
         if not nx.is_weakly_connected(G):
-            print("El grafo no es Hamiltoniano ni tiene camino Hamiltoniano porque no es débilmente conexo.")
+            print(
+                "El grafo no es Hamiltoniano ni tiene camino Hamiltoniano porque no es débilmente conexo."
+            )
             return False
     else:
-        #verificamos si el grafo es conexo
+        # verificamos si el grafo es conexo
         if not nx.is_connected(G):
-            print("El grafo no es Hamiltoniano ni tiene un camino Hamiltoniano porque no es conexo")
+            print(
+                "El grafo no es Hamiltoniano ni tiene un camino Hamiltoniano porque no es conexo"
+            )
             return False
-        n=G.number_of_nodes()
-        
-        print("según el teorema de Dirac si G es conexo y cada vertice(v) de G cumple que deg(v)>=|V|/2\nEl grafo es Hamiltoniano")
-        #verificamos si se cumple el teorema de Dirac
-        if all(deg >= n/2 for _,deg in G.degree()):
+        n = G.number_of_nodes()
+
+        print(
+            "según el teorema de Dirac si G es conexo y cada vertice(v) de G cumple que deg(v)>=|V|/2\nEl grafo es Hamiltoniano"
+        )
+        # verificamos si se cumple el teorema de Dirac
+        if all(deg >= n / 2 for _, deg in G.degree()):
             print("El grafo es Hamiltoniano porque cumple el teorema de Dirac")
             return True
         else:
             print("el grafo no es Hamiltoniano porque no cumple el teorema de Dirac")
-            return False  
+            return False
 
- 
 
-def dibujar_grafo():
+def dibujar_grafo_hamilton():
     # Crear un grafo vacío (dirigido o no dirigido)
     es_dirigido = input("¿Quieres un grafo dirigido? (s/n): ").lower() == "s"
     G = nx.DiGraph() if es_dirigido else nx.Graph()
@@ -65,8 +71,4 @@ def dibujar_grafo():
 
 
 if __name__ == "__main__":
-    dibujar_grafo()
-
-
-    
-    
+    dibujar_grafo_hamilton()
