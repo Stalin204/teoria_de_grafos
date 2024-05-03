@@ -1,11 +1,11 @@
 import tkinter as tk
 
-def ventana_queEs(ventana):
+def ventanaDirigido(ventana):
     #Funcion para mostrar que es un grafo
     ventana=tk.Tk()
-    ventana.title("¿Que es un grafo?")
+    ventana.title("Grafo Dirigido")
     ventana.geometry("500x500")
-    texto = "Un grafo es una composición entre un conjunto de vértices o nodos y un conjunto de aristas o arcos de la forma G(V,A) \n Los vertices son representados como puntos y las aristas como una linea que conecta dos nodos."
+    texto = "Un grafo dirigido es un tipo de grafo en el cual sus aristas tienen un sentido definido, es decir, una flecha que indica que va desde un vertice hacia otro. \n Significa que el grado solo puede recorrerse en la dirección que inidiquen las flechas."
     
     # Crear el Label con el texto ajustado al tamaño de la ventana
     label = tk.Label(ventana, text=texto, wraplength=480)  # El wraplength define el ancho máximo antes de saltar de línea
@@ -14,4 +14,3 @@ def ventana_queEs(ventana):
     ventana.mainloop()
 
     return ventana
-
