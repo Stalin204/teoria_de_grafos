@@ -1,35 +1,58 @@
 import tkinter as tk
+from grafo import ventana_queEs
+from grafoNoDirigido import ventanaNoDirigido
+from grafoDirigido import ventanaDirigido
 
 
 def introduction_grafos():
     ventana = tk.Tk()
     ventana.geometry("600x600")
-    # viene la explicacipon de lo que es un grafo
-    button_q_grafo = tk.Button(ventana, text="¿Qué es un grafo?")
+    
+    # Botón: ¿Qué es un grafo?
+    button_q_grafo = tk.Button(ventana, text="¿Qué es un grafo?", command=lambda: ventana_queEs(ventana), fg="black")
     button_q_grafo.pack()
     button_q_grafo.place(x=100, y=100)
-    # grafo dirigido
-    button_dirigido = tk.Button(ventana, text="Grafo dirigido")
+    
+    # Botón: Grafo dirigido
+    button_dirigido = tk.Button(ventana, text="Grafo dirigido", command=lambda: ventanaDirigido(ventana), fg="black")
     button_dirigido.pack()
     button_dirigido.place(x=100, y=150)
-    # grafo no dirigido
-    button_no_dirigido = tk.Button(ventana, text="Grafo no dirigido")
-    button_dirigido.pack()
+    
+    # Botón: Grafo no dirigido
+    button_no_dirigido = tk.Button(ventana, text="Grafo no dirigido", command=lambda: ventanaNoDirigido(ventana), fg="black")
+    button_no_dirigido.pack()
     button_no_dirigido.place(x=100, y=200)
-    # grafo ciclico
-    button_ciclico = tk.Button(ventana, text="Grafo ciclico")
+    
+    # Botón: Grafo cíclico
+    button_ciclico = tk.Button(ventana, text="Grafo acíclico")
     button_ciclico.pack()
-    button_ciclico.place(x=200, y=350)
-    # grafo comoleto
+    button_ciclico.place(x=100, y=250)
+    
+    # Botón: Grafo completo
     button_completo = tk.Button(ventana, text="Grafo completo")
     button_completo.pack()
-    button_completo.place(x=200, y=400)
-    # grafo regular
+    button_completo.place(x=100, y=300)
+    
+    # Botón: Grafo regular
     button_regular = tk.Button(ventana, text="Grafo regular")
     button_regular.pack()
-    button_regular.place(x=200, y=450)
-    # grafo bipartito
+    button_regular.place(x=100, y=350)
+    
+    # Botón: Grafo bipartito
     button_bipartito = tk.Button(ventana, text="Grafo bipartito")
     button_bipartito.pack()
-    button_bipartito.place(x=200, y=500)
+    button_bipartito.place(x=100, y=400)
+    
     return ventana
+
+def grafo(ventana):
+    ventana_queEs(ventana)
+    ventana.destroy()
+
+def grafoDirigido(ventana):
+    ventanaDirigido(ventana)
+    ventana.destroy()
+
+def grafoNoDirigido(ventana):
+    ventanaNoDirigido(ventana)
+    ventana.destroy()
