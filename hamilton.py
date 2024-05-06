@@ -5,11 +5,10 @@ import networkx as nx
 def esHamiltoniano(G):
     # Verificamos si es dirigido o no
     if nx.is_directed(G):
-        # verificamos si el grafo tiene conexidad debil
-        if not nx.is_weakly_connected(G):
-            print(
-                "El grafo no es Hamiltoniano ni tiene camino Hamiltoniano porque no es débilmente conexo."
-            )
+        #verificamos si el grafo tiene conexidad debil
+        if nx.is_weakly_connected(G):
+            print("El grafo no es Hamiltoniano ni tiene camino Hamiltoniano porque es débilmente conexo.")
+
             return False
     else:
         # verificamos si el grafo es conexo
