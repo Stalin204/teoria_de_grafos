@@ -1,5 +1,21 @@
+import tkinter as tk
+
 import matplotlib.pyplot as plt
 import networkx as nx
+
+
+def definicion_grado_nodo():
+    grado_no_dirigido = "El grado de un nodo en un grafo no dirigido son la cantidad de arcos (aristas ) que inciden en el nodo,en caso de que halla un loop, el arco se cuenta como entrada y salida\n"
+    grafo_dirigido = "En un grafo dirigido el grado del nodo son aquellos arcos que inciden en el y los que salen de el\n "
+    root = tk.Tk()
+
+    texto = tk.Label(
+        root,
+        text=grado_no_dirigido + grafo_dirigido,
+    )
+    texto.pack()
+
+    return
 
 
 def obtener_grado_nodo(G, nodo):
@@ -18,6 +34,7 @@ def obtener_grado_nodo(G, nodo):
 
 
 def dibujar_grafo():
+    definicion_grado_nodo()
     # Crear un grafo vacío (dirigido o no dirigido)
     es_dirigido = input("¿Quieres un grafo dirigido? (s/n): ").lower() == "s"
     G = nx.DiGraph() if es_dirigido else nx.Graph()
