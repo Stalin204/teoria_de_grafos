@@ -1,64 +1,88 @@
-import matplotlib.pyplot as plt
+import tkinter as tk
+from tkinter import simpledialog, messagebox
 import networkx as nx
-from collections import defaultdict
+import matplotlib.pyplot as plt
 
-class Grafo:
-    def __init__(self):
-        self.grafo = defaultdict(list)
+def ventanaAciclico(ventana):
+    ventana = tk.Tk()
+    ventana.title("Grafo No Dirigido")
+    ventana.geometry("500x500")
+    
+    # Función para mostrar información sobre grafo no dirigido
+    texto = "Un gráfico acíclico es un gráfico sin ciclos (un ciclo es un circuito completo). Al seguir el gráfico de nodo a nodo, nunca visitará el mismo nodo dos veces."
+    label = tk.Label(ventana, text=texto, wraplength=480)
+    label.pack()
 
-    def agregar_arista(self, u, v):
-        self.grafo[u].append(v)
+    # Botón para dibujar el grafo
+    button_dibujar = tk.Button(ventana, text="Verificar si un grafo es aciclico", command=verificar_grafoAciclico, fg="black")
+    button_dibujar.pack()
 
-    def es_aciclico_util(self, v, visitados, en_recorrido):
-        visitados[v] = True
-        en_recorrido[v] = True
+    ventana.mainloop()
 
-        for vecino in self.grafo[v]:
-            if not visitados[vecino]:
-                if self.es_aciclico_util(vecino, visitados, en_recorrido):
-                    return True
-            elif en_recorrido[vecino]:
+def verificar_grafoAciclico():
+    es_dirigido = simpledialog.askstring("Tipo de grafo", "¿Quieres un grafo dirigido? (s/n): ")
+    if es_dirigido is not None:
+        es_dirigido = es_dirigido.lower() == "s"
+    else:
+        # Si el usuario no ingresa ninguna respuesta, asumimos un valor predeterminado (False)
+        es_dirigido = False
+    G = nx.DiGraph() if es_dirigido else nx.Graph()
+
+    # Agregar nodos
+    num_nodos = simpledialog.askinteger("Número de nodos", "Ingresa el número de nodos:")
+    if num_nodos is None:  # Si se cancela el diálogo, salir de la función
+        return
+    
+    for i in range(num_nodos):
+        G.add_node(i)
+
+    # Agregar aristas (enlaces)
+    while True:
+        u = simpledialog.askinteger("Arista", f"Ingresa el nodo de origen (0-{num_nodos - 1}):")
+        v = simpledialog.askinteger("Arista", f"Ingresa el nodo de destino (0-{num_nodos - 1}):")
+        if u is None or v is None:  # Si se cancela el diálogo, salir del bucle
+            break
+        G.add_edge(u, v)
+
+        continuar = simpledialog.askstring("Agregar otra arista", "¿Agregar otra arista? (s/n):")
+        if continuar is None or continuar.lower() != "s":  # Si se cancela el diálogo o el usuario ingresa algo que no es "s", salir del bucle
+            break
+
+    grafoAciclico = es_aciclico(G)
+    if grafoAciclico:
+        messagebox.showinfo("Resultado", "El grafo no tiene ciclos, es acíclico")
+    else:
+        messagebox.showinfo("Resultado", "El grafo tiene ciclos(circuito completo), por lo tanto, no es aciclico")
+    # Dibujar el grafo
+    nx.draw(G, with_labels=True, node_color='skyblue', node_size=800, edge_color='k', linewidths=1, font_size=15)
+
+    # Mostrar el grafo
+    plt.title("Grafo")
+    plt.show()
+
+    
+
+def es_aciclico_util(G, v, visitados, en_recorrido):
+    visitados[v] = True
+    en_recorrido[v] = True
+
+    for vecino in G.neighbors(v):
+        if not visitados[vecino]:
+            if es_aciclico_util(G, vecino, visitados, en_recorrido):
                 return True
+        elif en_recorrido[vecino]:
+            return True
 
-        en_recorrido[v] = False
-        return False
+    en_recorrido[v] = False
+    return False
 
-    def es_aciclico(self):
-        visitados = [False] * len(self.grafo)
-        en_recorrido = [False] * len(self.grafo)
+def es_aciclico(Grafo):
+    visitados = {nodo: False for nodo in Grafo.nodes()}
+    en_recorrido = {nodo: False for nodo in Grafo.nodes()}
 
-        for nodo in self.grafo:
-            if not visitados[nodo]:
-                if self.es_aciclico_util(nodo, visitados, en_recorrido):
-                    return False
-        return True
+    for nodo in Grafo.nodes():
+        if not visitados[nodo]:
+            if es_aciclico_util(Grafo, nodo, visitados, en_recorrido):
+                return False
+    return True
 
-# Crear grafo de ejemplo
-g = Grafo()
-g.agregar_arista(0, 1)
-g.agregar_arista(0, 2)
-g.agregar_arista(1, 2)
-g.agregar_arista(2, 0)
-g.agregar_arista(2, 3)
-g.agregar_arista(3, 3)
-
-# Verificar si el grafo es acíclico
-if g.es_aciclico():
-    print("El grafo no tiene ciclos")
-else:
-    print("El grafo tiene ciclos")
-
-# Crear un objeto de grafo de NetworkX
-G = nx.DiGraph()
-
-# Agregar nodos y aristas al grafo de NetworkX
-for nodo, vecinos in g.grafo.items():
-    for vecino in vecinos:
-        G.add_edge(nodo, vecino)
-
-# Dibujar el grafo
-nx.draw(G, with_labels=True, node_color='skyblue', node_size=800, edge_color='k', linewidths=1, font_size=15)
-
-# Mostrar el grafo
-plt.title("Grafo")
-plt.show()

@@ -5,6 +5,7 @@ from grafo import ventana_queEs
 from grafoNoDirigido import ventanaNoDirigido
 from grafoDirigido import ventanaDirigido
 from regular import ventanaRegular
+from aciclico import ventanaAciclico
 
 
 def introduction_grafos():
@@ -27,7 +28,7 @@ def introduction_grafos():
     button_no_dirigido.place(x=100, y=200)
     
     # Botón: Grafo cíclico
-    button_ciclico = tk.Button(ventana, text="Grafo acíclico")
+    button_ciclico = tk.Button(ventana, text="Grafo acíclico", command=lambda: ventanaAciclico(ventana), fg="black")
     button_ciclico.pack()
     button_ciclico.place(x=100, y=250)
     
@@ -58,6 +59,10 @@ def grafoDirigido(ventana):
 
 def grafoNoDirigido(ventana):
     ventanaNoDirigido(ventana)
+    ventana.destroy()
+
+def grafoAciclico(ventana):
+    ventanaAciclico(ventana)
     ventana.destroy()
 
 def regular(ventana):
