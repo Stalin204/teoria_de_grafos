@@ -1,7 +1,10 @@
 import tkinter as tk
+
+from setuptools import Command
 from grafo import ventana_queEs
 from grafoNoDirigido import ventanaNoDirigido
 from grafoDirigido import ventanaDirigido
+from regular import ventanaRegular
 
 
 def introduction_grafos():
@@ -34,7 +37,7 @@ def introduction_grafos():
     button_completo.place(x=100, y=300)
     
     # Botón: Grafo regular
-    button_regular = tk.Button(ventana, text="Grafo regular")
+    button_regular = tk.Button(ventana, text="Grafo regular", command=lambda: ventanaRegular(ventana) ,fg="black")
     button_regular.pack()
     button_regular.place(x=100, y=350)
     
@@ -55,4 +58,8 @@ def grafoDirigido(ventana):
 
 def grafoNoDirigido(ventana):
     ventanaNoDirigido(ventana)
+    ventana.destroy()
+
+def regular(ventana):
+    ventanaRegular(ventana)
     ventana.destroy()

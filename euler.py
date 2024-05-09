@@ -4,9 +4,9 @@ import networkx as nx
 
 def es_euleriano(G):
     if nx.is_directed(G):
-        if not nx.is_weakly_connected(G):
+        if nx.is_weakly_connected(G):
             print(
-                "El grafo no es euleriano ni tiene camino euleriano porque no es débilmente conexo."
+                "El grafo no es euleriano ni tiene camino euleriano porque es débilmente conexo."
             )
             return False
     else:
