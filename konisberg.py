@@ -1,4 +1,5 @@
 import tkinter as tk
+import os
 
 
 def difinicion_puentes_konisber():
@@ -17,8 +18,11 @@ def difinicion_puentes_konisber():
     label = tk.Label(window, text=parte1 + parte2+parte3+parte4+parte5+parte6+parte7+parte8)
     label.pack()
 
+    #image_path = os.path.join(os.path.dirname(__file__), 'images', 'images.jpg')
+    image = tk.PhotoImage(file="images/Konigsberg_bridges-removebg-preview.png")
+
     label = tk.Label(
-        window, text="Un puente de Konisberg es un grafo que tiene 4 nodos y 7 aristas"
+        window, text="Un puente de Konisberg es un grafo que tiene 4 nodos y 7 aristas",image=image
     )
     label.pack()
 
