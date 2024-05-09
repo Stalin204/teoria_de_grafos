@@ -1,5 +1,10 @@
 import matplotlib.pyplot as plt
 import networkx as nx
+import numpy as np
+
+# Crear una ventana con dos subfiguras
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+ax2.axis("off")
 
 
 def esHamiltoniano(G):
@@ -7,31 +12,67 @@ def esHamiltoniano(G):
     if nx.is_directed(G):
         #verificamos si el grafo tiene conexidad debil
         if nx.is_weakly_connected(G):
-            print("El grafo no es Hamiltoniano ni tiene camino Hamiltoniano porque es débilmente conexo.")
 
+            text = "El grafo no es Hamiltoniano\n ni tiene camino Hamiltoniano \nporque es débilmente conexo"
+            ax2.text(0.5, 0.5, text, transform=ax2.transAxes,  ha="center", va="top", fontsize=12)
             return False
     else:
         # verificamos si el grafo es conexo
         if not nx.is_connected(G):
-            print(
-                "El grafo no es Hamiltoniano ni tiene un camino Hamiltoniano porque no es conexo"
-            )
+           
+            #ponemos el texto en la segunda figura "ax2"
+            text = "El grafo no es Hamiltoniano \n ni tiene un camino Hamiltoniano \nporque no es conexo"
+            ax2.text(0.5, 0.5, text, transform=ax2.transAxes,  ha="center", va="top", fontsize=12)
+            
             return False
         n = G.number_of_nodes()
-
-        print(
-            "según el teorema de Dirac si G es conexo y cada vertice(v) de G cumple que deg(v)>=|V|/2\nEl grafo es Hamiltoniano"
-        )
+        #Agrego el texto
+        text = "según el teorema de Dirac\n si G es conexo y cada vertice 'v' de G \n cumple que deg(v)>=|V|/2\n su grado es mayor o igual al total de vertices dividido entre dos\nEl grafo es Hamiltoniano"
+        ax2.text(0.5, 1, text, transform=ax2.transAxes,  ha="center", va="top", fontsize=12)
+            
         # verificamos si se cumple el teorema de Dirac
         if all(deg >= n / 2 for _, deg in G.degree()):
-            print("El grafo es Hamiltoniano porque cumple el teorema de Dirac")
+            
+            text = "El grafo es Hamiltoniano\n porque cumple el teorema de Dirac"
+            ax2.text(0.5, 0.4, text, transform=ax2.transAxes,  ha="center", va="top", fontsize=12)
             return True
         else:
-            print("el grafo no es Hamiltoniano porque no cumple el teorema de Dirac")
+            
+            text = "El grafo no es Hamiltoniano\n porque no cumple el teorema de Dirac"
+            ax2.text(0.5, 0.4, text, transform=ax2.transAxes,  ha="center", va="top", fontsize=12)
             return False
+    
 
+def caminoHamiltoniano(G):
+    n = len(G)
+    visited = [False] * n
+    path = []
+
+    def dfs(node):
+        visited[node] = True
+        path.append(node)
+
+        if len(path) == n:
+            return True
+        
+
+        for neighbor in G[node]:
+            if not visited[neighbor]:
+                if dfs(neighbor):
+                    return True
+
+        visited[node] = False
+        path.pop()
+        return False
+
+    for node in range(n):
+        if dfs(node):
+            return True
+
+    return False
 
 def dibujar_grafo_hamilton():
+
     # Crear un grafo vacío (dirigido o no dirigido)
     es_dirigido = input("¿Quieres un grafo dirigido? (s/n): ").lower() == "s"
     G = nx.DiGraph() if es_dirigido else nx.Graph()
@@ -58,14 +99,19 @@ def dibujar_grafo_hamilton():
 
     # Dibujar el grafo
     pos = nx.spring_layout(G)
-    nx.draw(G, pos, with_labels=True, node_size=500, node_color="skyblue", font_size=10)
+    #creamos el grafo en ax1
+    nx.draw(G, pos,ax=ax1,with_labels=True, node_size=500, node_color="skyblue", font_size=10)
+
 
     if opcion == "1":
         esHamiltoniano(G)
     elif opcion == "2":
-        nx.draw_networkx_edges(G, pos, width=2, alpha=0.5, edge_color="r")
-        esHamiltoniano(G)
-
+        nx.draw_networkx_edges(G, pos,ax=ax1, width=2, alpha=0.5, edge_color="r")
+        if caminoHamiltoniano(G):
+            text = "El grafo tiene un camino Hamiltoniano"
+        else:
+            text ="El grafo no tiene un camino Hamiltoniano"
+        ax2.text(0.5, 0.4, text, transform=ax2.transAxes,  ha="center", va="top", fontsize=12)    
     plt.show()
 
 

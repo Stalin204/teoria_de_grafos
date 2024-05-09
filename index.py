@@ -18,7 +18,8 @@ def ventana_crear():
     ventana = tk.Tk()
     ventana.title("Introducción a grafos")
     ventana.geometry("600x600")
-    cabeza = tk.Label(ventana, text="Escoja la opción que más le guste").pack()
+    cabeza = tk.Label(ventana, text="Escoja la opción que más le guste")
+    cabeza.pack()
 
     # En el comando del botón, pasa la referencia de la función 'numero' en lugar de llamarla directamente
     button = tk.Button(
