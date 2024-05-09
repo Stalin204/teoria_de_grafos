@@ -45,28 +45,28 @@ def esHamiltoniano(G):
 
 def caminoHamiltoniano(G):
     n = len(G)
-    visited = [False] * n
-    path = []
+    visitado = [False] * n
+    camino = []
 
-    def dfs(node):
-        visited[node] = True
-        path.append(node)
+    def recorrer(node):
+        visitado[node] = True
+        camino.append(node)
 
-        if len(path) == n:
+        if len(camino) == n:
             return True
         
 
-        for neighbor in G[node]:
-            if not visited[neighbor]:
-                if dfs(neighbor):
+        for vecino in G[node]:
+            if not visitado[vecino]:
+                if recorrer(vecino):
                     return True
 
-        visited[node] = False
-        path.pop()
+        visitado[node] = False
+        camino.pop()
         return False
 
     for node in range(n):
-        if dfs(node):
+        if recorrer(node):
             return True
 
     return False
