@@ -4,6 +4,13 @@ from tkinter import messagebox, simpledialog
 import matplotlib.pyplot as plt
 import networkx as nx
 
+from conectividad import conectividad
+
+
+def calcular_conectividad_nodo(G, nodo):
+    conectividad_nodo = conectividad(G, nodo)
+    print(f"Los nodos conectados al nodo {nodo} son: {conectividad_nodo}")
+
 
 def definicion_grado_nodo():
     grado_no_dirigido = "El grado de un nodo en un grafo no dirigido son la cantidad de arcos (aristas ) que inciden en el nodo,en caso de que halla un loop, el arco se cuenta como entrada y salida\n"
@@ -27,9 +34,11 @@ def obtener_grado_nodo(G, nodo):
             grado_salida = G.out_degree[nodo]
             print(f"El grado de entrada del nodo {nodo} es: {grado_entrada}")
             print(f"El grado de salida del nodo {nodo} es: {grado_salida}")
+            print("LOs nodos conectados al nodo son: ", conectividad(G, nodo))
         else:
             grado = G.degree[nodo]
             print(f"El grado del nodo {nodo} es: {grado}")
+            print("LOs nodos conectados al nodo son: ", conectividad(G, nodo))
     else:
         print(f"El nodo {nodo} no existe en el grafo.")
 
