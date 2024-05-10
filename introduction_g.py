@@ -11,6 +11,7 @@ from regular import ventanaRegular
 
 
 def introduction_grafos():
+    
     ventana = tk.Tk()
     ventana.geometry("600x600")
 
