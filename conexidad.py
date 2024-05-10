@@ -4,6 +4,7 @@ from matplotlib.pyplot import text
 
 from euler import dibujar_grafo
 from hamilton import dibujar_grafo_hamilton
+from konisberg import difinicion_puentes_konisber
 
 
 def crear_ventana():
@@ -20,7 +21,9 @@ def crear_ventana():
     button_hamilton.pack()
     button_hamilton.place(x=200, y=250)
     # va la función de konisberg
-    button_koonisber = tk.Button(ventana, text="puentes de konisberg")
+    button_koonisber = tk.Button(
+        ventana, text="puentes de konisberg", command=difinicion_puentes_konisber
+    )
     button_koonisber.pack()
     button_koonisber.place(x=200, y=300)
 
