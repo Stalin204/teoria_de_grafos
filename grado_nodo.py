@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import messagebox, simpledialog
 
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -34,28 +35,52 @@ def obtener_grado_nodo(G, nodo):
 
 
 def dibujar_grafo():
-    definicion_grado_nodo()
+    # definicion_grado_nodo()
     # Crear un grafo vacío (dirigido o no dirigido)
-    es_dirigido = input("¿Quieres un grafo dirigido? (s/n): ").lower() == "s"
+    es_dirigido = simpledialog.askstring(
+        "Tipo de grafo", "¿Quieres un grafo dirigido? (s/n): "
+    )
+    if es_dirigido is not None:
+        es_dirigido = es_dirigido.lower() == "s"
+    else:
+        # Si el usuario no ingresa ninguna respuesta, asumimos un valor predeterminado (False)
+        es_dirigido = False
     G = nx.DiGraph() if es_dirigido else nx.Graph()
 
     # Agregar nodos
-    num_nodos = int(input("Ingresa el número de nodos: "))
+    num_nodos = simpledialog.askinteger(
+        "Número de nodos", "Ingresa el número de nodos:"
+    )
+    if num_nodos is None:  # Si se cancela el diálogo, salir de la función
+        return
+
     for i in range(num_nodos):
         G.add_node(i)
 
     # Agregar aristas (enlaces)
     while True:
-        u = int(input("Ingresa el nodo de origen (0-{0}): ".format(num_nodos - 1)))
-        v = int(input("Ingresa el nodo de destino (0-{0}): ".format(num_nodos - 1)))
+        u = simpledialog.askinteger(
+            "Arista", f"Ingresa el nodo de origen (0-{num_nodos - 1}):"
+        )
+        v = simpledialog.askinteger(
+            "Arista", f"Ingresa el nodo de destino (0-{num_nodos - 1}):"
+        )
+        if u is None or v is None:  # Si se cancela el diálogo, salir del bucle
+            break
         G.add_edge(u, v)
 
-        continuar = input("¿Agregar otra arista? (s/n): ").lower()
-        if continuar != "s":
+        continuar = simpledialog.askstring(
+            "Agregar otra arista", "¿Agregar otra arista? (s/n):"
+        )
+        if (
+            continuar is None or continuar.lower() != "s"
+        ):  # Si se cancela el diálogo o el usuario ingresa algo que no es "s", salir del bucle
             break
 
     # Obtener el grado de un nodo
-    nodo_a_consultar = int(input("Ingresa el nodo del cual deseas obtener el grado: "))
+    nodo_a_consultar = simpledialog.askinteger(
+        "Grado de un nodo", "Ingresa el nodo a consultar:"
+    )
     obtener_grado_nodo(G, nodo_a_consultar)
 
     # Dibujar el grafo
