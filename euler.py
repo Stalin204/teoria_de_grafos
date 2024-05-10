@@ -1,3 +1,5 @@
+from tkinter import messagebox, simpledialog
+
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -30,13 +32,15 @@ def es_euleriano(G):
 
 def dibujar_grafo():
     # Crear un grafo vacío (dirigido o no dirigido)
-    es_dirigido = input("¿Quieres un grafo dirigido? (s/n): ").lower() == "s"
+    es_dirigido = messagebox.askyesno(
+        "Tipo de grafo", "¿Quieres un grafo dirigido? (s/n):"
+    )
     G = nx.DiGraph() if es_dirigido else nx.Graph()
 
     # Agregar nodos
-    num_nodos = int(input("Ingresa el número de nodos: "))
-    for i in range(num_nodos):
-        G.add_node(i)
+    num_nodos = simpledialog.askinteger("Nodos", "¿Cuántos nodos quieres agregar?")
+    if num_nodos is None:  # Si se cancela el diálogo, salir de la función
+        return
 
     # Agregar aristas (enlaces)
     while True:

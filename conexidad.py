@@ -2,16 +2,23 @@ import tkinter as tk
 
 from matplotlib.pyplot import text
 
-from euler import dibujar_grafo
 from hamilton import dibujar_grafo_hamilton
 from konisberg import difinicion_puentes_konisber
+from ventana_euler import crear_ventana_euler
+
+
+def euler_ventana_grafo(ventana):
+    crear_ventana_euler()
+    ventana.destroy()
 
 
 def crear_ventana():
     ventana = tk.Tk()  # Llama al constructor Tk() para crear la ventana
     ventana.title("Conexidad")  # Proporciona un título entre las comillas
     ventana.geometry("500x500")  # tamaño de la ventana
-    buttoneuler = tk.Button(ventana, text="grafo euleriano", command=dibujar_grafo)
+    buttoneuler = tk.Button(
+        ventana, text="grafo euleriano", command=lambda: euler_ventana_grafo(ventana)
+    )
     buttoneuler.pack()
     buttoneuler.place(x=200, y=200)
     # aui debe de ir el boton para el grafo hamiltoniano
