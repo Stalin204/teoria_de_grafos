@@ -23,12 +23,7 @@ def introduction_grafos():
     )
     button_q_grafo.pack()
     button_q_grafo.place(x=100, y=100)
-    # grado de un nodo
-    button_grado_nodo = tk.Button(
-        ventana, text="Grado de un nodo", command=dibujar_grafo, fg="black"
-    )
-    button_grado_nodo.pack()
-    button_grado_nodo.place(x=120, y=120)
+
     # Botón: Grafo dirigido
     button_dirigido = tk.Button(
         ventana,
@@ -78,6 +73,12 @@ def introduction_grafos():
     button_bipartito = tk.Button(ventana, text="Grafo bipartito")
     button_bipartito.pack()
     button_bipartito.place(x=100, y=400)
+
+    # grado de un nodo
+    button_grado_nodo = tk.Button(
+        ventana, text="Grado de un nodo", command=dibujar_grafo, fg="black"
+    )
+    button_grado_nodo.pack()
 
     return ventana
 

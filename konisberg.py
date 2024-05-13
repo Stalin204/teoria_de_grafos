@@ -22,14 +22,14 @@ def difinicion_puentes_konisber():
     label.pack()
 
     # image_path = os.path.join(os.path.dirname(__file__), 'images', 'images.jpg')
-    image = tk.PhotoImage(file="images/Konigsberg_bridges-removebg-preview.png")
+    image = tk.PhotoImage(file="images/puentes.jpeg")
 
-    label = tk.Label(
+    label1 = tk.Label(
         window,
         text="Un puente de Konisberg es un grafo que tiene 4 nodos y 7 aristas",
         image=image,
     )
-    label.pack()
+    label1.pack()
 
     # window.mainloop()
     return window
