@@ -22,7 +22,7 @@ def difinicion_puentes_konisber():
     label.pack()
 
     # image_path = os.path.join(os.path.dirname(__file__), 'images', 'images.jpg')
-    image = tk.PhotoImage(file="images/puentes.jpeg")
+    image = tk.PhotoImage(file="")
 
     label1 = tk.Label(
         window,
