@@ -17,7 +17,7 @@ def introduction(ventana):
 def ventana_crear():
     ventana = tk.Tk()
     ventana.title("Teoria de Grafos")
-    ventana.geometry("600x600")
+    ventana.geometry("500x500")
     cabeza = tk.Label(ventana, text="Escoja una opción")
     cabeza.pack()
     cabeza.place(x=150, y=100)

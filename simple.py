@@ -11,7 +11,7 @@ def ventanaSimple(ventana):
     ventana.geometry("500x500")
     texto = "Un grafo Simple es aquel que no tiene aristas paralelas ni ciclicas"
 
-    label = tk.Label(ventana, text=texto)
+    label = tk.Label(ventana, text=texto, wraplength=480)
     label.pack()
 
     # img_path = "images/grafosRegulares-removebg-preview(1).png"
@@ -26,7 +26,7 @@ def ventanaSimple(ventana):
         ventana, text="Dibujar grafo", command=lambda: dibujar_Simple(), fg="red"
     )
     button.pack()
-    button.place(x=200, y=400)
+    button.place(x=200, y=100)
 
 
     ventana.mainloop()

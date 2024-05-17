@@ -11,6 +11,7 @@ from grafoRegular import ventanaRegular
 from grafoCompleto import ventanaCompleto
 from grafoBipartito import ventanaBipartito
 from matrices import ventanaMatrices
+from simple import ventanaSimple
 
 
 def introduction_grafos():
@@ -102,6 +103,16 @@ def introduction_grafos():
         fg="black")
     button_matrices.pack()
     button_matrices.place(x=100, y=350)
+
+    #simple
+    button_simple=tk.Button(
+        ventana,
+        text="Grafo Simple",
+        command=lambda: ventanaSimple(ventana),
+        fg="black"
+    )
+    button_simple.pack()
+    button_simple.place(x=300, y=300)
     return ventana
 
 
