@@ -44,17 +44,22 @@ def dibujar_grafo():
 
     # Agregar aristas (enlaces)
     while True:
-        u = int(input("Ingresa el nodo de origen (0-{0}): ".format(num_nodos - 1)))
-        v = int(input("Ingresa el nodo de destino (0-{0}): ".format(num_nodos - 1)))
+        u = simpledialog.askinteger(
+            "Input", "Ingresa el nodo de origen (0-{0}): ".format(num_nodos - 1)
+        )
+        v = simpledialog.askinteger(
+            "Input", "Ingresa el nodo de destino (0-{0}): ".format(num_nodos - 1)
+        )
         G.add_edge(u, v)
 
-        continuar = input("¿Agregar otra arista? (s/n): ").lower()
+        continuar = simpledialog.askstring("Input", "¿Agregar otra arista? (s/n): ")
         if continuar != "s":
             break
 
     # Opciones para el usuario
-    opcion = input(
-        "¿Qué deseas verificar?\n1. Si es euleriano.\n2. Si tiene un camino euleriano.\nSelecciona una opción (1/2): "
+    opcion = simpledialog.askstring(
+        "input",
+        "¿Qué deseas verificar?\n1. Si es euleriano.\n2. Si tiene un camino euleriano.\nSelecciona una opción (1/2): ",
     )
 
     # Dibujar el grafo
