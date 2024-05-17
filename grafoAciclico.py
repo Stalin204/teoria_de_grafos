@@ -58,7 +58,7 @@ def verificar_grafoAciclico():
     else:
         messagebox.showinfo("Resultado", "El grafo tiene ciclos, por lo tanto, no es acíclico.")
     # Dibujar el grafo
-    nx.draw(G, with_labels=True, node_color='skyblue', node_size=800, edge_color='k', linewidths=1, font_size=15)
+    nx.draw(G, with_labels=True, node_color='skyblue', node_size=500, edge_color='k', linewidths=1, font_size=15)
 
     # Mostrar el grafo
     plt.title("Grafo")

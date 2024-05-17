@@ -10,6 +10,7 @@ from grafoNoDirigido import ventanaNoDirigido
 from grafoRegular import ventanaRegular
 from grafoCompleto import ventanaCompleto
 from grafoBipartito import ventanaBipartito
+from matrices import ventanaMatrices
 
 
 def introduction_grafos():
@@ -74,7 +75,7 @@ def introduction_grafos():
         fg="black",
     )
     button_regular.pack()
-    button_regular.place(x=100, y=350)
+    button_regular.place(x=300, y=200)
 
     # Botón: Grafo bipartito
     button_bipartito = tk.Button(
@@ -84,7 +85,7 @@ def introduction_grafos():
         fg="black",
         )
     button_bipartito.pack()
-    button_bipartito.place(x=100, y=400)
+    button_bipartito.place(x=300, y=250)
 
     # grado de un nodo
     button_grado_nodo = tk.Button(
@@ -93,33 +94,14 @@ def introduction_grafos():
     button_grado_nodo.pack()
     button_grado_nodo.place(x=300, y=150)
 
+    #matrices
+    button_matrices=tk.Button(
+        ventana, 
+        text="Matrices de Adyacencia e Incidencia", 
+        command=lambda: ventanaMatrices(ventana), 
+        fg="black")
+    button_matrices.pack()
+    button_matrices.place(x=100, y=350)
     return ventana
 
 
-def grafo(ventana):
-    ventana_queEs(ventana)
-    ventana.destroy()
-
-
-def grafoDirigido(ventana):
-    ventanaDirigido(ventana)
-    ventana.destroy()
-
-
-def grafoNoDirigido(ventana):
-    ventanaNoDirigido(ventana)
-    ventana.destroy()
-
-
-def grafoAciclico(ventana):
-    ventanaAciclico(ventana)
-    ventana.destroy()
-
-
-def regular(ventana):
-    ventanaRegular(ventana)
-    ventana.destroy()
-
-def completo(ventana):
-    ventanaCompleto(ventana)
-    ventana.destroy()
