@@ -1,15 +1,15 @@
 import tkinter as tk
 from PIL import Image, ImageTk
 
-from dibujar_Regular import dibujar_Regular
+from dibujar_Bipartito import dibujar_Bipartito
 
 
-def ventanaRegular(ventana):
+def ventanaBipartito(ventana):
     
     ventana = tk.Tk()
-    ventana.title("Grafo Regular")
+    ventana.title("Grafo Bipartito")
     ventana.geometry("500x500")
-    texto = "Un grafo Regular es aquel en el que todos los grados de sus nodos o vértices son iguales"
+    texto = "Un grafo Bipartito es aquel que sus vertices se pueden partir en dos conjuntos disjunto\n es decir lo podemos separar en dos conjuntos de vertices que no son adyadentes entre si\n "
 
     label = tk.Label(ventana, text=texto)
     label.pack()
@@ -23,7 +23,7 @@ def ventanaRegular(ventana):
     # canvas.pack()
 
     button = tk.Button(
-        ventana, text="Dibujar grafo", command=lambda: dibujar_Regular(), fg="red"
+        ventana, text="Dibujar grafo", command=lambda: dibujar_Bipartito(), fg="red"
     )
     button.pack()
     button.place(x=200, y=400)
@@ -32,9 +32,3 @@ def ventanaRegular(ventana):
     ventana.mainloop()
 
     return ventana
-
-
-
-
-
-# ventanaRegular(ventana=tk.Tk)
