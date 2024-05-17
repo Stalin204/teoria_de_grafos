@@ -2,12 +2,14 @@ import tkinter as tk
 
 from setuptools import Command
 
-from aciclico import ventanaAciclico
+from grafoAciclico import ventanaAciclico
 from grado_nodo import dibujar_grafo
 from grafo import ventana_queEs
 from grafoDirigido import ventanaDirigido
 from grafoNoDirigido import ventanaNoDirigido
-from regular import ventanaRegular
+from grafoRegular import ventanaRegular
+from grafoCompleto import ventanaCompleto
+from grafoBipartito import ventanaBipartito
 
 
 def introduction_grafos():
@@ -22,7 +24,7 @@ def introduction_grafos():
         fg="black",
     )
     button_q_grafo.pack()
-    button_q_grafo.place(x=100, y=100)
+    button_q_grafo.place(x=200, y=100)
 
     # Botón: Grafo dirigido
     button_dirigido = tk.Button(
@@ -55,7 +57,12 @@ def introduction_grafos():
     button_ciclico.place(x=100, y=250)
 
     # Botón: Grafo completo
-    button_completo = tk.Button(ventana, text="Grafo completo")
+    button_completo = tk.Button(
+        ventana, 
+        text="Grafo completo",
+        command=lambda: ventanaCompleto(ventana),
+        fg="black",
+    )
     button_completo.pack()
     button_completo.place(x=100, y=300)
 
@@ -70,7 +77,12 @@ def introduction_grafos():
     button_regular.place(x=100, y=350)
 
     # Botón: Grafo bipartito
-    button_bipartito = tk.Button(ventana, text="Grafo bipartito")
+    button_bipartito = tk.Button(
+        ventana, 
+        text="Grafo bipartito",
+        command=lambda: ventanaBipartito(ventana),
+        fg="black",
+        )
     button_bipartito.pack()
     button_bipartito.place(x=100, y=400)
 
@@ -79,6 +91,7 @@ def introduction_grafos():
         ventana, text="Grado de un nodo", command=dibujar_grafo, fg="black"
     )
     button_grado_nodo.pack()
+    button_grado_nodo.place(x=300, y=150)
 
     return ventana
 
@@ -105,4 +118,8 @@ def grafoAciclico(ventana):
 
 def regular(ventana):
     ventanaRegular(ventana)
+    ventana.destroy()
+
+def completo(ventana):
+    ventanaCompleto(ventana)
     ventana.destroy()

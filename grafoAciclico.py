@@ -48,11 +48,15 @@ def verificar_grafoAciclico():
         if continuar is None or continuar.lower() != "s":  # Si se cancela el diálogo o el usuario ingresa algo que no es "s", salir del bucle
             break
 
-    grafoAciclico = es_aciclico(G)
-    if grafoAciclico:
-        messagebox.showinfo("Resultado", "El grafo no tiene ciclos, es acíclico")
+    if es_dirigido:
+        es_aciclico = nx.is_directed_acyclic_graph(G)
     else:
-        messagebox.showinfo("Resultado", "El grafo tiene ciclos(circuito completo), por lo tanto, no es aciclico")
+        es_aciclico = es_aciclico_no_dirigido(G)
+
+    if es_aciclico:
+        messagebox.showinfo("Resultado", "El grafo es acíclico (no tiene ciclos).")
+    else:
+        messagebox.showinfo("Resultado", "El grafo tiene ciclos, por lo tanto, no es acíclico.")
     # Dibujar el grafo
     nx.draw(G, with_labels=True, node_color='skyblue', node_size=800, edge_color='k', linewidths=1, font_size=15)
 
@@ -62,27 +66,24 @@ def verificar_grafoAciclico():
 
     
 
-def es_aciclico_util(G, v, visitados, en_recorrido):
+def es_aciclico_util(G, v, visitados, padre):
     visitados[v] = True
-    en_recorrido[v] = True
 
     for vecino in G.neighbors(v):
         if not visitados[vecino]:
-            if es_aciclico_util(G, vecino, visitados, en_recorrido):
+            if es_aciclico_util(G, vecino, visitados, v):
                 return True
-        elif en_recorrido[vecino]:
+        elif vecino != padre:
             return True
 
-    en_recorrido[v] = False
     return False
 
-def es_aciclico(Grafo):
-    visitados = {nodo: False for nodo in Grafo.nodes()}
-    en_recorrido = {nodo: False for nodo in Grafo.nodes()}
+def es_aciclico_no_dirigido(G):
+    visitados = {nodo: False for nodo in G.nodes()}
 
-    for nodo in Grafo.nodes():
+    for nodo in G.nodes():
         if not visitados[nodo]:
-            if es_aciclico_util(Grafo, nodo, visitados, en_recorrido):
+            if es_aciclico_util(G, nodo, visitados, -1):
                 return False
     return True
 

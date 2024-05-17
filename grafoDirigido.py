@@ -21,6 +21,7 @@ def ventanaDirigido(ventana):
     button_ejemplo.pack()
 
     ventana.mainloop()
+    return ventana
 
 def dibujar_grafoNoDirigido():
     # Crear un grafo no dirigido
