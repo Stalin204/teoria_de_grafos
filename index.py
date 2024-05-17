@@ -27,7 +27,7 @@ def ventana_crear():
 
     # En el comando del botón, pasa la referencia de la función 'numero' en lugar de llamarla directamente
     button = tk.Button(
-        ventana, text="Conexidad", command=lambda: conexidad(ventana), fg="black")
+        ventana, text="Conexidad", command=crear_ventana, fg="black")
     button.pack()
     button.place(x=150, y=300)
     # aqui viene el boton para abribr la ventan de introducción
