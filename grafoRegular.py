@@ -7,7 +7,7 @@ def ventanaRegular(ventana):
     #Funcion para mostrar que es un grafo
     ventana=tk.Tk()
     ventana.title("Grafo Regular")
-    ventana.geometry("500x500")
+    ventana.geometry("500x200")
     texto = "Un grafo Regular es aquel que todos los grados de sus nodos o vertices son iguales"
     
     # Crear el Label con el texto ajustado al tamaño de la ventana
@@ -15,7 +15,6 @@ def ventanaRegular(ventana):
     label.pack()
     button_dibujar = tk.Button(ventana, text="Verificar Grafo Regular", command=grafoRegular, fg="black")
     button_dibujar.pack()
-    ventana.after(10000, ventana.destroy)
     ventana.mainloop()
 
     return ventana

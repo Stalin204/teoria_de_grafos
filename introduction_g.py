@@ -1,6 +1,5 @@
 import tkinter as tk
-
-from setuptools import Command
+from tkinter import font
 
 from grafoAciclico import ventanaAciclico
 from grado_nodo import dibujar_grafo
@@ -16,103 +15,46 @@ from simple import ventanaSimple
 
 def introduction_grafos():
     ventana = tk.Tk()
-    ventana.geometry("600x600")
+    ventana.geometry("600x400")
+    ventana.title("Introducción a la Teoría de Grafos")
 
-    # Botón: ¿Qué es un grafo?
-    button_q_grafo = tk.Button(
-        ventana,
-        text="¿Qué es un grafo?",
-        command=lambda: ventana_queEs(ventana),
-        fg="black",
-    )
-    button_q_grafo.pack()
-    button_q_grafo.place(x=200, y=100)
+    # Fuente personalizada
+    font_title = font.Font(family="Helvetica", size=16, weight="bold")
+    font_body = font.Font(family="Helvetica", size=12)
 
-    # Botón: Grafo dirigido
-    button_dirigido = tk.Button(
-        ventana,
-        text="Grafo dirigido",
-        command=lambda: ventanaDirigido(ventana),
-        fg="black",
-    )
-    button_dirigido.pack()
-    button_dirigido.place(x=100, y=150)
-
-    # Botón: Grafo no dirigido
-    button_no_dirigido = tk.Button(
-        ventana,
-        text="Grafo no dirigido",
-        command=lambda: ventanaNoDirigido(ventana),
-        fg="black",
-    )
-    button_no_dirigido.pack()
-    button_no_dirigido.place(x=100, y=200)
-
-    # Botón: Grafo cíclico
-    button_ciclico = tk.Button(
-        ventana,
-        text="Grafo acíclico",
-        command=lambda: ventanaAciclico(ventana),
-        fg="black",
-    )
-    button_ciclico.pack()
-    button_ciclico.place(x=100, y=250)
-
-    # Botón: Grafo completo
-    button_completo = tk.Button(
+    # Título
+    label_title = tk.Label(
         ventana, 
-        text="Grafo completo",
-        command=lambda: ventanaCompleto(ventana),
-        fg="black",
+        text="Introducción a la Teoría de Grafos", 
+        font=font_title
     )
-    button_completo.pack()
-    button_completo.place(x=100, y=300)
+    label_title.pack(pady=20)
 
-    # Botón: Grafo regular
-    button_regular = tk.Button(
-        ventana,
-        text="Grafo regular",
-        command=lambda: ventanaRegular(ventana),
-        fg="black",
-    )
-    button_regular.pack()
-    button_regular.place(x=300, y=200)
+    # Botones
+    buttons = [
+        ("¿Qué es un grafo?", ventana_queEs),
+        ("Grafo dirigido", ventanaDirigido),
+        ("Grafo no dirigido", ventanaNoDirigido),
+        ("Grafo acíclico", ventanaAciclico),
+        ("Grafo completo", ventanaCompleto),
+        ("Grafo regular", ventanaRegular),
+        ("Grafo bipartito", ventanaBipartito),
+        ("Grado de un nodo", dibujar_grafo),
+        ("Matrices de Adyacencia e Incidencia", ventanaMatrices),
+        ("Grafo Simple", ventanaSimple)
+    ]
 
-    # Botón: Grafo bipartito
-    button_bipartito = tk.Button(
-        ventana, 
-        text="Grafo bipartito",
-        command=lambda: ventanaBipartito(ventana),
-        fg="black",
+    for i, (text, command) in enumerate(buttons):
+        button = tk.Button(
+            ventana, 
+            text=text, 
+            font=font_body, 
+            command=lambda cmd=command: cmd(ventana)
         )
-    button_bipartito.pack()
-    button_bipartito.place(x=300, y=250)
+        button.pack(pady=5)
+        button.place(x=100 if i % 2 == 0 else 400, y=100 + (i // 2) * 50)
 
-    # grado de un nodo
-    button_grado_nodo = tk.Button(
-        ventana, text="Grado de un nodo", command=dibujar_grafo, fg="black"
-    )
-    button_grado_nodo.pack()
-    button_grado_nodo.place(x=300, y=150)
-
-    #matrices
-    button_matrices=tk.Button(
-        ventana, 
-        text="Matrices de Adyacencia e Incidencia", 
-        command=lambda: ventanaMatrices(ventana), 
-        fg="black")
-    button_matrices.pack()
-    button_matrices.place(x=100, y=350)
-
-    #simple
-    button_simple=tk.Button(
-        ventana,
-        text="Grafo Simple",
-        command=lambda: ventanaSimple(ventana),
-        fg="black"
-    )
-    button_simple.pack()
-    button_simple.place(x=300, y=300)
-    return ventana
+    ventana.mainloop()
 
 
+introduction_grafos()

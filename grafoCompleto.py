@@ -7,7 +7,7 @@ def ventanaCompleto(ventana):
     #Funcion para mostrar que es un grafo
     ventana=tk.Tk()
     ventana.title("Grafo Completo")
-    ventana.geometry("500x500")
+    ventana.geometry("500x250")
     texto = "un grafo completo es un grafo simple donde cada par de vértices está conectado por una arista. \nUn grafo completo de n vértices tiene 𝑛(𝑛−1)/2 aristas, y se denota 𝐾𝑛. \nEs un grafo regular con todos sus vértices de grado 𝑛−1."
 
     
@@ -16,7 +16,6 @@ def ventanaCompleto(ventana):
     label.pack()
     button_dibujar = tk.Button(ventana, text="Dibujar grafo completo", command=grafoCompleto, fg="black")
     button_dibujar.pack()
-    ventana.after(10000, ventana.destroy)
     ventana.mainloop()
 
     return ventana

@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 def ventanaMatrices(ventana):
     ventana = tk.Tk()
     ventana.title("Matrices")
-    ventana.geometry("500x500")
+    ventana.geometry("500x350")
     
     # Título: Matriz de adyacencia
     titulo_adyacencia = tk.Label(ventana, text="Matriz de adyacencia", font=("Arial", 14, "bold"))
@@ -21,7 +21,7 @@ def ventanaMatrices(ventana):
     titulo_incidencia.pack()
 
     # Label: Definición de la matriz de incidencia
-    definicion_incidencia = tk.Label(ventana, text="La matriz de incidencia es una forma de representar un grafo donde cada fila representa un nodo y cada columna representa una arista. Si el elemento (i, j) es 1, indica que el nodo i es un punto final de la arista j; si es -1, indica que el nodo i es el inicio de la arista j; si es 0, indica que el nodo i no está conectado a la arista j.", wraplength=480)
+    definicion_incidencia = tk.Label(ventana, text="La matriz de incidencia es una forma de representar un grafo donde cada fila representa un nodo y cada columna representa una arista. Si el valor es 1, es que el nodo esta conectado con la aristas; si es 0, indica que el nodo i no está conectado a la arista j.", wraplength=480)
     definicion_incidencia.pack()
 
     # Botón para dibujar el grafo

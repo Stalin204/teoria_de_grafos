@@ -8,7 +8,7 @@ def ventanaSimple(ventana):
     
     ventana = tk.Tk()
     ventana.title("Grafo Simple")
-    ventana.geometry("500x500")
+    ventana.geometry("500x250")
     texto = "Un grafo Simple es aquel que no tiene aristas paralelas ni ciclicas"
 
     label = tk.Label(ventana, text=texto, wraplength=480)

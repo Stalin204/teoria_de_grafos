@@ -32,18 +32,20 @@ def obtener_grado_nodo(G, nodo):
         if nx.is_directed(G):
             grado_entrada = G.in_degree[nodo]
             grado_salida = G.out_degree[nodo]
-            print(f"El grado de entrada del nodo {nodo} es: {grado_entrada}")
-            print(f"El grado de salida del nodo {nodo} es: {grado_salida}")
-            print("LOs nodos conectados al nodo son: ", conectividad(G, nodo))
+            messagebox.showinfo("Grado del nodo", 
+                f"El grado de entrada del nodo {nodo} es: {grado_entrada}\n"
+                f"El grado de salida del nodo {nodo} es: {grado_salida}\n"
+                f"Los nodos conectados al nodo son: {conectividad(G, nodo)}")
         else:
             grado = G.degree[nodo]
-            print(f"El grado del nodo {nodo} es: {grado}")
-            print("LOs nodos conectados al nodo son: ", conectividad(G, nodo))
+            messagebox.showinfo("Grado del nodo", 
+                f"El grado del nodo {nodo} es: {grado}\n"
+                f"Los nodos conectados al nodo son: {conectividad(G, nodo)}")
     else:
-        print(f"El nodo {nodo} no existe en el grafo.")
+        messagebox.showerror("Error", f"El nodo {nodo} no existe en el grafo.")
 
 
-def dibujar_grafo():
+def dibujar_grafo(ventana):
     # definicion_grado_nodo()
     # Crear un grafo vacío (dirigido o no dirigido)
     es_dirigido = simpledialog.askstring(
@@ -96,7 +98,3 @@ def dibujar_grafo():
     pos = nx.spring_layout(G)
     nx.draw(G, pos, with_labels=True, node_size=500, node_color="skyblue", font_size=10)
     plt.show()
-
-
-if __name__ == "__main__":
-    dibujar_grafo()

@@ -7,7 +7,7 @@ import random
 def ventanaNoDirigido(ventana):
     ventana = tk.Tk()
     ventana.title("Grafo No Dirigido")
-    ventana.geometry("500x500")
+    ventana.geometry("500x250")
     
     # Función para mostrar información sobre grafo no dirigido
     texto = "Un grafo no dirigido es un tipo de grafo en el cual sus aristas no constan de una dirección, lo cual permite recorrer el grafo en cualquier dirección. "

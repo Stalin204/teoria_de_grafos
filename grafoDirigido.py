@@ -8,7 +8,7 @@ def ventanaDirigido(ventana):
     #Funcion para mostrar que es un grafo
     ventana=tk.Tk()
     ventana.title("Grafo Dirigido")
-    ventana.geometry("500x500")
+    ventana.geometry("500x250")
     texto = "Un grafo dirigido es un tipo de grafo en el cual sus aristas tienen un sentido definido, es decir, una flecha que indica que va desde un vertice hacia otro. \n Significa que el grado solo puede recorrerse en la dirección que inidiquen las flechas."
     
     # Crear el Label con el texto ajustado al tamaño de la ventana

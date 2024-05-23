@@ -7,7 +7,7 @@ def ventanaBipartito(ventana):
     #Funcion para mostrar que es un grafo
     ventana=tk.Tk()
     ventana.title("Grafo Bipartito")
-    ventana.geometry("500x500")
+    ventana.geometry("500x350")
     texto = ("Un grafo bipartito es un grafo cuyos vértices se pueden separar en dos conjuntos disjuntos, de manera que las aristas no pueden relacionar vértices de un mismo conjunto. \n"
             "Un grafo bipartito puede considerarse si todos los vértices de uno de los subconjuntos están relacionados con los del otro subconjunto.")
 

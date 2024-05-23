@@ -1,7 +1,5 @@
 import tkinter as tk
 
-from matplotlib.pyplot import text
-
 from hamilton import dibujar_grafo_hamilton
 from konisberg import difinicion_puentes_konisber
 from ventana_euler import crear_ventana_euler
@@ -9,29 +7,46 @@ from ventana_euler import crear_ventana_euler
 
 def euler_ventana_grafo(ventana):
     crear_ventana_euler()
-    ventana.destroy()
 
 
 def crear_ventana():
     ventana = tk.Tk()  # Llama al constructor Tk() para crear la ventana
     ventana.title("Conexidad")  # Proporciona un título entre las comillas
     ventana.geometry("500x500")  # tamaño de la ventana
+
+    # Estilo de fuente
+    font = ("Helvetica", 12)
+
+    # Estilo de los botones
+    button_style = {
+        "font": font,
+        "bg": "#4CAF50",  # Verde
+        "fg": "white",    # Texto blanco
+        "relief": "raised",
+        "borderwidth": 3,
+        "width": 15,
+        "height": 2,
+    }
+
+    # Título
+    title_label = tk.Label(ventana, text="Seleccione una opción:", font=("Helvetica", 16))
+    title_label.pack(pady=20)
+
     buttoneuler = tk.Button(
-        ventana, text="grafo euleriano", command=lambda: euler_ventana_grafo(ventana)
+        ventana, text="Grafo Euleriano", command=lambda: euler_ventana_grafo(ventana), **button_style
     )
-    buttoneuler.pack()
-    buttoneuler.place(x=200, y=200)
-    # aui debe de ir el boton para el grafo hamiltoniano
+    buttoneuler.pack(pady=10)
+
     button_hamilton = tk.Button(
-        ventana, text="grafo hamiltoniano", command=dibujar_grafo_hamilton
+        ventana, text="Grafo Hamiltoniano", command=dibujar_grafo_hamilton, **button_style
     )
-    button_hamilton.pack()
-    button_hamilton.place(x=200, y=250)
-    # va la función de konisberg
+    button_hamilton.pack(pady=10)
+
     button_koonisber = tk.Button(
-        ventana, text="puentes de konisberg", command=difinicion_puentes_konisber
+        ventana, text="Puentes de Konisberg", command=difinicion_puentes_konisber, **button_style
     )
-    button_koonisber.pack()
-    button_koonisber.place(x=200, y=300)
+    button_koonisber.pack(pady=10)
 
     return ventana
+
+crear_ventana().mainloop()
