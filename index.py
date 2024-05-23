@@ -20,7 +20,7 @@ def ventana_crear():
     ventana.geometry("500x500")
     titulo=tk.Label(ventana, text="Presentado por: Carlos Fabian Corrales \nJhan Carlos Martinez \nSantiago Betancourt")
     titulo.pack()
-    presentado=tk.Label(ventana, text="Presnetado al docente Pedro Pablo Cardenas Alzate")
+    presentado=tk.Label(ventana, text="Presentado al docente Pedro Pablo Cardenas Alzate")
     presentado.pack()
     titulo.place(x=100, y=50)
     cabeza = tk.Label(ventana, text="Escoja una opción")
