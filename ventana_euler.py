@@ -9,6 +9,7 @@ from introduccion_grafo_euleriano import ventanas_grafos_eulerianos
 
 def crear_ventana_euler():
     windwos = tk.Tk()
+    windwos.geometry("200x200")
     label_titulo = tk.Label(windwos, text="Introcudción grafos y ciclos eulerianos")
     label_titulo.pack()
     button_introducion_ciclos_eulerrianos = tk.Button(

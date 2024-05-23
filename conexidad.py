@@ -48,5 +48,3 @@ def crear_ventana():
     button_koonisber.pack(pady=10)
 
     return ventana
-
-crear_ventana().mainloop()

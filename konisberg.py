@@ -13,7 +13,7 @@ def difinicion_puentes_konisber():
     parte8 = " En el caso de la ciudad de Konisberg, dos de los nodos tenían un número impar de aristas que los unían, por lo que no era posible recorrer todos los puentes de la ciudad sin cruzar ninguno de ellos más de una vez.\n"
     window = tk.Tk()
     window.title("Definición de puentes de Konisberg")
-    window.geometry("400x400")
+    window.geometry("1300x300")
 
     label = tk.Label(
         window,
@@ -24,12 +24,13 @@ def difinicion_puentes_konisber():
     # image_path = os.path.join(os.path.dirname(__file__), 'images', 'images.jpg')
     image = tk.PhotoImage(file="")
 
-    label1 = tk.Label(
-        window,
-        text="Un puente de Konisberg es un grafo que tiene 4 nodos y 7 aristas",
-        image=image,
-    )
-    label1.pack()
+    
+    #label1 = tk.Label(
+     #   window,
+      #  text="Un puente de Konisberg es un grafo que tiene 4 nodos y 7 aristas",
+       # image=image,
+    #)
+    #label1.pack()
 
     # window.mainloop()
     return window

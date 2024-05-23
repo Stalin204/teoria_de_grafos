@@ -7,12 +7,10 @@ from introduction_g import introduction_grafos
 
 def conexidad(ventana):
     crear_ventana()
-    ventana.destroy()
 
 
 def introduction(ventana):
     introduction_grafos()
-    ventana.destroy()
 
 
 def ventana_crear():

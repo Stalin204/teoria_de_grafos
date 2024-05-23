@@ -56,5 +56,3 @@ def introduction_grafos():
 
     ventana.mainloop()
 
-
-introduction_grafos()
